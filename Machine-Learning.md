@@ -15,3 +15,4 @@
 ## NN
 1. [Prodicode/ann-visualizer: A python library for visualizing Artificial Neural Networks (ANN)](https://github.com/Prodicode/ann-visualizer)
 2. [Stephen-Rimac/Python-for-Data-Scientists](https://github.com/Stephen-Rimac/Python-for-Data-Scientists)
+3. [API - 神经网络层 — TensorLayer 中文版 1.7.4 文档](http://tensorlayercn.readthedocs.io/zh/latest/modules/layers.html)

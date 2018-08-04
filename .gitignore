@@ -8,3 +8,12 @@ build
 
 # jupter notebook
 .ipynb_checkpoints
+
+# data file
+*.csv
+*.xls[x]
+*.zip
+
+# folder
+part*
+input
