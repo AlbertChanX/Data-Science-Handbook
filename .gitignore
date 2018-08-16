@@ -17,3 +17,9 @@ build
 # folder
 part*
 input
+
+.idea
+
+# scala
+target
+project
