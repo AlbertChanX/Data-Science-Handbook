@@ -1,5 +1,4 @@
 # coding:utf-8
-# 导入函数库
 import jqdata
 import pandas as pd
 
@@ -48,7 +47,7 @@ def before_market_open(context):
 def market_open(context):
     log.info('函数运行时间(market_open):'+str(context.current_dt.time()))
     g.available_list =  get_available_stocks(context)
-    log.info('available_list: '.format(g.available_list))
+    log.info('available_list: {}'.format(g.available_list))
     
     
 ## 收盘后运行函数  
@@ -79,9 +78,10 @@ def get_available_stocks(context):
 
 def handle_data(context, data):
     stocks = g.available_list
-    stocks = [g.security]
+    # stocks = [g.security]
     
     for security in stocks:
+        log.info('#'*50)
         log.warn('current stock: {}'.format(security))
     # 得到股票之前n d/min的moving平均价，不包括现在
     # log.info('lastl {}'.format(data[g.security])
@@ -91,6 +91,8 @@ def handle_data(context, data):
         arr = get_bars(security, 60, unit='1d',
                  fields=['date','low','close','money'],
                  include_now=True)
+        if len(arr)<60:
+            continue
         log.info('len of arr: {}'.format(len(arr)))
         df = pd.DataFrame(arr)
         df.columns = ['date','low','close','money']
@@ -107,16 +109,18 @@ def handle_data(context, data):
         log.info('avg amount 10: {}'.format(money_ma10))
         # get current money
         current_money = df['money'].values[-1]
-        log.info('current_price: {}'.format(current_money))
+        log.info('current_money: {}'.format(current_money))
         # 取得上一时间点价格
-        current_price = df['close'].values[-1]
-        log.info('current_money: {}'.format(current_price))
+        tmp = df['close'].values[-2:]
+        pre_price = tmp[0]
+        current_price = tmp[1]
+        log.info('current_price: {}'.format(current_price))
         # 取得当前的现金
         cash = context.portfolio.available_cash
     
         if security not in  g.bought_lists:
             # 如果上一时间点价格高出60天平均价, 则买入  1.618
-            if current_price >= MA60 and current_money>= 1*money_ma10:
+            if current_price >= MA60 and pre_price<=MA60 and current_money>= 1*money_ma10:
                 # 记录这次买入
                 log.warn('成交额为10日均量线的 {}倍'.format(current_money/money_ma10))
                 log.warn("价格高于均价, 买入 %s" % (security))
@@ -178,4 +182,3 @@ def delisted_filter(context, security_list):
     security_list = [stock for stock in security_list if not '退' in current_data[stock].name]
     # 返回结果
     return security_list
-

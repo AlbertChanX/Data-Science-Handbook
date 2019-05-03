@@ -13,7 +13,7 @@ class Outer{
 
 // func and method
 // val 语句可以定义函数，def 语句定义方法。
-class Test{
+class Calculator{
   def add3(x: Int) = x + 3
   val func = (x: Int) => x + 3 // Lambda
 }

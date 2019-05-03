@@ -13,13 +13,16 @@ build
 *.csv
 *.xls[x]
 *.zip
+*.np[yz]
 
 # folder
 part*
 input
 
 .idea
+.vscode
+*.model
+generated_captcha_images
 
 # scala
 target
-project
