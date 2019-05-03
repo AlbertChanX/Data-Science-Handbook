@@ -28,7 +28,4 @@
 
 * [gensim: models.word2vec – Word2vec embeddings](https://radimrehurek.com/gensim/models/word2vec.html)
 * [corpus](https://dumps.wikimedia.org/zhwiki/)
-
-
-
-
+* :star:[fighting41love/funNLP](https://github.com/fighting41love/funNLP)
