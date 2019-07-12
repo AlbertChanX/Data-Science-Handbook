@@ -1,0 +1,10 @@
+matplotlib==2.2.3
+numpy==1.16.3
+Keras==2.2.4
+tushare==1.2.37
+requests==2.9.2
+pandas==0.24.2
+beautifulsoup4==4.7.1
+gensim==3.7.3
+pdfkit==0.6.1
+scikit_learn==0.21.2
